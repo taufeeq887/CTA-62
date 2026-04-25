@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#TeachTheTruth – Call to Action #62</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --earth: #2C1810;
+    --rust: #B5451B;
+    --amber: #D4860A;
+    --gold: #E8B84B;
+    --cream: #F5EDD6;
+    --sage: #4A6741;
+    --sky: #2D5F6E;
+    --white: #FEFAF2;
+    --text: #1A0F08;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(44,24,16,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(232,184,75,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--earth);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10rem 3rem 5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 80% 20%, rgba(181,69,27,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(74,103,65,0.2) 0%, transparent 50%);
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 0.95;
+    max-width: 900px;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(245,237,214,0.7);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: var(--rust);
+    color: var(--white);
+    padding: 1rem 2.5rem;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: #c94d20; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--cream);
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(245,237,214,0.3);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stat-row {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    right: 3rem;
+    display: flex;
+    gap: 4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .hero-stat h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hero-stat p {
+    color: rgba(245,237,214,0.6);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  /* SECTION BASE */
+  section { padding: 7rem 3rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 60px;
+    background: var(--rust);
+    opacity: 0.4;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  /* INTRO SECTION */
+  .intro {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .intro-text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #3a2010;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .intro-text p strong {
+    color: var(--rust);
+    font-weight: 600;
+  }
+
+  .intro-callout {
+    background: var(--earth);
+    padding: 3rem;
+    position: relative;
+  }
+
+  .intro-callout::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    line-height: 1;
+  }
+
+  .intro-callout blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem;
+  }
+
+  .intro-callout cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* WHAT IS THIS */
+  .explainer {
+    background: var(--white);
+  }
+
+  .explainer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 4rem;
+  }
+
+  .explainer-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    border-top: 3px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .explainer-card:hover { border-color: var(--rust); }
+
+  .explainer-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--amber);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .explainer-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--earth);
+  }
+
+  .explainer-card p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #4a2e1a;
+    font-weight: 300;
+  }
+
+  /* TIMELINE */
+  .timeline-section {
+    background: var(--earth);
+    color: var(--cream);
+  }
+
+  .timeline-section .section-title { color: var(--cream); }
+
+  .timeline {
+    margin-top: 4rem;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 120px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(232,184,75,0.2);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    align-items: start;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 118px;
+    top: 0.4rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .timeline-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--gold);
+    text-align: right;
+    padding-top: 0.2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.9rem;
+    color: rgba(245,237,214,0.6);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .timeline-item.bad .timeline-year { color: #e87777; }
+  .timeline-item.bad::before { background: #e87777; }
+  .timeline-item.good .timeline-year { color: var(--gold); }
+  .timeline-item.setback .timeline-year { color: #e8a047; }
+  .timeline-item.setback::before { background: #e8a047; }
+
+  /* STATS */
+  .stats-section {
+    background: var(--rust);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    padding: 0;
+  }
+
+  .stat-block {
+    padding: 5rem 3rem;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    text-align: center;
+  }
+
+  .stat-block:last-child { border-right: none; }
+
+  .stat-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-block p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    font-weight: 300;
+    max-width: 180px;
+    margin: 0 auto;
+  }
+
+  /* EFFECTS */
+  .effects-section {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .effects-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .effect-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: var(--cream);
+    border-left: 3px solid var(--amber);
+  }
+
+  .effect-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .effect-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--earth);
+    margin-bottom: 0.4rem;
+  }
+
+  .effect-item p {
+    font-size: 0.9rem;
+    color: #5a3520;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .opinion-box {
+    background: var(--earth);
+    padding: 3rem;
+    color: var(--cream);
+    position: sticky;
+    top: 8rem;
+  }
+
+  .opinion-box .opinion-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .opinion-box p {
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    color: rgba(245,237,214,0.85);
+    margin-bottom: 1.5rem;
+  }
+
+  .opinion-box p:last-child { margin-bottom: 0; }
+
+  /* RESOURCES */
+  .resources-section {
+    background: var(--cream);
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .resource-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border: 1px solid rgba(44,24,16,0.08);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .resource-card:hover {
+    border-color: var(--amber);
+    transform: translateY(-3px);
+  }
+
+  .resource-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--rust);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .resource-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--earth);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .resource-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #5a3520;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--rust);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: gap 0.2s;
+  }
+
+  .resource-link:hover { gap: 0.8rem; }
+
+  /* ACTION PLAN */
+  .action-section {
+    background: var(--sage);
+    color: var(--white);
+  }
+
+  .action-section .section-label { color: var(--gold); }
+  .action-section .section-label::after { background: var(--gold); }
+  .action-section .section-title { color: var(--white); }
+
+  .action-steps {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .action-step {
+    background: rgba(255,255,255,0.06);
+    padding: 2.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.2s;
+  }
+
+  .action-step:hover { background: rgba(255,255,255,0.1); }
+
+  .action-step .step-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .action-step h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .action-step p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(245,237,214,0.75);
+    font-weight: 300;
+  }
+
+  .action-step .cost {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(232,184,75,0.1);
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(232,184,75,0.2);
+  }
+
+  /* CONCLUSION / CTA */
+  .conclusion {
+    background: var(--earth);
+    text-align: center;
+    padding: 8rem 3rem;
+  }
+
+  .conclusion .slogan {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--cream);
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    line-height: 1.3;
+  }
+
+  .conclusion .hashtag {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+    display: block;
+  }
+
+  .conclusion p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(245,237,214,0.7);
+    max-width: 680px;
+    margin: 0 auto 3rem;
+    font-weight: 300;
+  }
+
+  .petition-box {
+    max-width: 500px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,184,75,0.2);
+    padding: 2.5rem;
+  }
+
+  .petition-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+
+  .petition-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(245,237,214,0.2);
+    color: var(--cream);
+    padding: 0.9rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .petition-input::placeholder { color: rgba(245,237,214,0.35); }
+  .petition-input:focus { border-color: var(--gold); }
+
+  .petition-btn {
+    width: 100%;
+    background: var(--rust);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .petition-btn:hover { background: #c94d20; }
+
+  .thank-you {
+    display: none;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #180d07;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid rgba(232,184,75,0.1);
+  }
+
+  footer .footer-brand {
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  footer p {
+    color: rgba(245,237,214,0.35);
+    font-size: 0.8rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 5rem 1.5rem; }
+    .intro, .effects-section { grid-template-columns: 1fr; gap: 3rem; }
+    .explainer-grid, .resources-grid { grid-template-columns: 1fr; }
+    .action-steps { grid-template-columns: 1fr; }
+    .stats-section { grid-template-columns: 1fr 1fr; }
+    .hero { padding: 8rem 1.5rem 8rem; }
+    .hero-stat-row { flex-wrap: wrap; gap: 2rem; bottom: 2rem; left: 1.5rem; right: 1.5rem; }
+    .opinion-box { position: static; }
+    .timeline::before { left: 80px; }
+    .timeline-item { grid-template-columns: 80px 1fr; gap: 1.5rem; }
+    .timeline-item::before { left: 78px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">#TeachTheTruth</span>
+  <ul class="nav-links">
+    <li><a href="#intro">The Issue</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#effects">Effects</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#action">Take Action</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div style="position:relative;z-index:1;width:100%;">
+    <p class="hero-tag">Call to Action #62 · Truth & Reconciliation</p>
+    <h1>You Can't Fix a History You Were <em>Never Taught.</em></h1>
+    <p class="hero-sub">Over 150,000 Indigenous children were taken from their families and put through a system designed to erase who they were. And for decades, Canadian students were never taught any of it. That ends now.</p>
+    <div class="hero-cta">
+      <a href="#intro" class="btn-primary">Learn the Truth</a>
+      <a href="#action" class="btn-outline">Take Action</a>
+    </div>
+  </div>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <h3>150K+</h3>
+      <p>Indigenous children taken</p>
+    </div>
+    <div class="hero-stat">
+      <h3>1996</h3>
+      <p>Last school closed — not ancient history</p>
+    </div>
+    <div class="hero-stat">
+      <h3>62%</h3>
+      <p>of Canadians say not enough is taught</p>
+    </div>
+    <div class="hero-stat">
+      <h3>#62</h3>
+      <p>TRC Call to Action — still not implemented</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="intro">
+  <div class="intro-text fade-in">
+    <p class="section-label">The Issue</p>
+    <h2 class="section-title">What is Call to Action #62?</h2>
+    <p>Call to Action #62 is one of the 94 Calls to Action released by Canada's Truth and Reconciliation Commission. It calls on every province and territory to make Indigenous history — including the truth about residential schools, treaties, and Indigenous contributions — <strong>mandatory in every K-12 classroom across the country.</strong></p>
+    <p>Right now, that is not happening. And the result is that millions of Canadian students are graduating without ever being properly taught one of the most painful and significant chapters in their own country's history. This is not just an Indigenous issue. <strong>This is a Canadian issue.</strong></p>
+    <p>I chose this Call to Action because I was one of those students. I did not know the full story behind residential schools. I did not know the last one did not close until 1996. I did not know that over 150,000 Indigenous children were forcefully taken from their homes. That is not ancient history — the survivors are still alive. And the fact that I had to learn this through a school project instead of being taught it tells you everything about why Call to Action #62 exists in the first place.</p>
+  </div>
+  <div class="intro-callout fade-in">
+    <blockquote>"Education is the most powerful weapon which you can use to change the world."</blockquote>
+    <cite>— Nelson Mandela</cite>
+    <br><br>
+    <blockquote style="font-size:1rem; margin-top:1.5rem;">"But that only works if the education you are receiving is honest and complete. Right now, it is not."</blockquote>
+    <cite>— Taufeeq Ahmad, NBE3U1</cite>
+  </div>
+</section>
+
+<!-- WHAT IS THIS -->
+<section class="explainer" id="explainer">
+  <div class="fade-in">
+    <p class="section-label">Context</p>
+    <h2 class="section-title">Three Things You Need to Understand</h2>
+  </div>
+  <div class="explainer-grid">
+    <div class="explainer-card fade-in">
+      <div class="num">01</div>
+      <h3>What Were Residential Schools?</h3>
+      <p>Residential schools were government-funded, church-run institutions designed to forcibly assimilate Indigenous children into European-Canadian culture. Children were taken from their families, forbidden from speaking their languages, stripped of their names, and punished for practicing their culture. The curriculum was mostly manual labour. The goal, by the 1930s, was not education — it was replacement. The government called it "Christian Citizenship."</p>
+    </div>
+    <div class="explainer-card fade-in">
+      <div class="num">02</div>
+      <h3>Why Was This Hidden?</h3>
+      <p>Canada has spent decades building a reputation as welcoming, fair, and rights-based. The truth about residential schools directly contradicts that image. The same government that ran those schools for over 160 years is still controlling what gets taught in classrooms today. It was not a coincidence that this was left out of the curriculum. It was a calculated decision to protect Canada's image at the expense of the truth.</p>
+    </div>
+    <div class="explainer-card fade-in">
+      <div class="num">03</div>
+      <h3>What Is Call to Action #62 Actually Asking For?</h3>
+      <p>It is not asking for special treatment. It is not asking for guilt. It is asking for the truth to be taught — to every student, in every province, from every background. Equity means giving everyone access to the same accurate history. Call to Action #62 is about equal, fair, and complete education. No more, no less.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="timeline">
+  <div class="fade-in">
+    <p class="section-label" style="color:rgba(232,184,75,0.6);">History</p>
+    <h2 class="section-title">A Timeline of What Happened — and What Keeps Happening</h2>
+  </div>
+  <div class="timeline" style="margin-top:4rem;">
+    <div class="timeline-item bad fade-in">
+      <div class="timeline-year">1831</div>
+      <div class="timeline-content">
+        <h4>First Residential School Opens</h4>
+        <p>The Mohawk Institute opens in Brantford, Ontario — the beginning of a system that will forcibly enroll over 150,000 children.</p>
+      </div>
+    </div>
+    <div class="timeline-item bad fade-in">
+      <div class="timeline-year">1876</div>
+      <div class="timeline-content">
+        <h4>The Indian Act is Passed</h4>
+        <p>The Canadian government passes legislation giving itself legal control over nearly every aspect of Indigenous peoples' lives — land, education, culture, identity.</p>
+      </div>
+    </div>
+    <div class="timeline-item bad fade-in">
+      <div class="timeline-year">1920</div>
+      <div class="timeline-content">
+        <h4>Attendance Made Mandatory</h4>
+        <p>The government makes residential school attendance mandatory for all Indigenous children aged 7–15. Parents who resist face criminal charges.</p>
+      </div>
+    </div>
+    <div class="timeline-item bad fade-in">
+      <div class="timeline-year">1930s</div>
+      <div class="timeline-content">
+        <h4>"Christian Citizenship"</h4>
+        <p>The goal of the schools formally shifts from basic education to total cultural replacement. Children are described as products to be manufactured into "Christian Citizens."</p>
+      </div>
+    </div>
+    <div class="timeline-item good fade-in">
+      <div class="timeline-year">1996</div>
+      <div class="timeline-content">
+        <h4>Last School Finally Closes</h4>
+        <p>Gordon Residential School in Saskatchewan closes its doors. The system ran for over 160 years. The survivors — and the children of survivors — are still living with the effects today.</p>
+      </div>
+    </div>
+    <div class="timeline-item good fade-in">
+      <div class="timeline-year">2008</div>
+      <div class="timeline-content">
+        <h4>Official Government Apology</h4>
+        <p>Prime Minister Stephen Harper issues a formal apology on behalf of Canada for the residential school system.</p>
+      </div>
+    </div>
+    <div class="timeline-item good fade-in">
+      <div class="timeline-year">2015</div>
+      <div class="timeline-content">
+        <h4>94 Calls to Action Released</h4>
+        <p>The Truth and Reconciliation Commission releases its final report with 94 Calls to Action, including Call to Action #62 — mandatory Indigenous curriculum in K-12 schools.</p>
+      </div>
+    </div>
+    <div class="timeline-item setback fade-in">
+      <div class="timeline-year">2016–18</div>
+      <div class="timeline-content">
+        <h4>Ontario Commits — Then Cancels</h4>
+        <p>The Province of Ontario commits to updating the curriculum with Indigenous studies in 2016. A new majority government cancels the initiative in 2018.</p>
+      </div>
+    </div>
+    <div class="timeline-item setback fade-in">
+      <div class="timeline-year">2020</div>
+      <div class="timeline-content">
+        <h4>Alberta Tries to Remove All Mentions</h4>
+        <p>Alberta moves to remove residential school content from Kindergarten to Grade 4 curriculum entirely. The pattern of erasure continues.</p>
+      </div>
+    </div>
+    <div class="timeline-item setback fade-in">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-content">
+        <h4>Call to Action #62 — Still Not Implemented</h4>
+        <p>More than a decade after the TRC's report, mandatory Indigenous curriculum is still not the law of the land in most Canadian provinces. We are still here. Still waiting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section fade-in">
+  <div class="stat-block">
+    <h2>150K+</h2>
+    <p>Indigenous children forcibly enrolled in residential schools</p>
+  </div>
+  <div class="stat-block">
+    <h2>165 yrs</h2>
+    <p>The system operated — 1831 to 1996</p>
+  </div>
+  <div class="stat-block">
+    <h2>80%</h2>
+    <p>of provincial custody admissions in Canada are Indigenous, despite being only 10% of the population</p>
+  </div>
+  <div class="stat-block">
+    <h2>62%</h2>
+    <p>of Canadians say residential school history is undertaught in schools</p>
+  </div>
+</div>
+
+<!-- EFFECTS -->
+<section class="effects-section" id="effects">
+  <div class="fade-in">
+    <p class="section-label">The Impact</p>
+    <h2 class="section-title">What Happens When You Erase Someone's History From the Classroom?</h2>
+    <div class="effects-list">
+      <div class="effect-item">
+        <div class="effect-icon">🧠</div>
+        <div>
+          <h4>Psychological & Social Harm to Survivors</h4>
+          <p>Studies show that residential school survivors face significantly higher rates of psychological and social challenges than the general population. Trauma does not end when the schools close — it gets passed down through generations.</p>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-icon">⚖️</div>
+        <div>
+          <h4>Overrepresentation in the Prison System</h4>
+          <p>Indigenous peoples make up nearly 80% of provincial custody admissions in Canada — while being only 10% of the population. This is a direct consequence of the intergenerational trauma and systemic neglect that the residential school system created. You cannot understand this statistic without knowing the history behind it.</p>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-icon">📚</div>
+        <div>
+          <h4>Indigenous Students Erased in Their Own Classrooms</h4>
+          <p>When Indigenous children sit in classrooms and their entire history, culture, and language does not exist in the curriculum — the message is clear: you do not matter. That is not education. That is erasure happening in real time.</p>
+        </div>
+      </div>
+      <div class="effect-item">
+        <div class="effect-icon">🇨🇦</div>
+        <div>
+          <h4>All Canadians Are Left Ignorant</h4>
+          <p>The need to know this history is not just for Indigenous students. Every single Canadian student deserves to know the truth about their country. Without it, we cannot understand why things are the way they are — and we cannot change them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="opinion-box fade-in">
+    <div class="opinion-label">My Take</div>
+    <p>People keep treating this like it is somebody else's problem. The government has to fix it. The school boards have to fix it. The teachers have to fix it. And yes — they do. But while we wait on them, a whole generation of students is sitting in classrooms right now getting an incomplete education.</p>
+    <p>I started this project not knowing the full story behind residential schools. I had no idea the last one closed in 1996. I am not saying this to be embarrassing — I am saying it because if it happened to me, it happened to a lot of people. And that tells you everything about why Call to Action #62 is still necessary in 2026.</p>
+    <p>The Prophet Muhammad ﷺ said: <em>"Whoever sees a wrong, let him change it with his hand; and if he is not able, then with his tongue; and if he is not able, then with his heart — and that is the weakest of faith."</em></p>
+    <p>Staying silent when you know something is wrong is not acceptable. This campaign is my tongue. What is yours?</p>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="resources-section" id="resources">
+  <div class="fade-in">
+    <p class="section-label">Learn More</p>
+    <h2 class="section-title">Where to Go From Here</h2>
+  </div>
+  <div class="resources-grid">
+    <div class="resource-card fade-in">
+      <div class="resource-num">Resource 01</div>
+      <h3>Truth & Reconciliation Commission — 94 Calls to Action</h3>
+      <p>This is the original document. Every Canadian should read it. Call to Action #62 is on page 7. This is not a suggestion — this is the roadmap that the government agreed to follow and has mostly ignored.</p>
+      <a href="https://www2.gov.bc.ca/assets/gov/british-columbians-our-governments/indigenous-people/aboriginal-peoples-documents/calls_to_action_english2.pdf" target="_blank" class="resource-link">Read the Report →</a>
+    </div>
+    <div class="resource-card fade-in">
+      <div class="resource-num">Resource 02</div>
+      <h3>CBC Beyond 94 — Tracking Government Progress</h3>
+      <p>CBC has been tracking every single Call to Action since 2015 — what is being done and what is being ignored. This is the most important resource for holding the government accountable in real time.</p>
+      <a href="https://www.cbc.ca/newsinteractives/beyond-94/develop-and-fund-aboriginal-content-in-education" target="_blank" class="resource-link">Track Progress →</a>
+    </div>
+    <div class="resource-card fade-in">
+      <div class="resource-num">Resource 03</div>
+      <h3>National Centre for Truth & Reconciliation (NCTR)</h3>
+      <p>Survivor testimonies. Historical records. Educational resources. If you want to learn the truth about residential schools directly from the people who lived through them, this is where you go.</p>
+      <a href="https://nctr.ca/" target="_blank" class="resource-link">Visit NCTR →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ACTION PLAN -->
+<section class="action-section" id="action">
+  <div class="fade-in">
+    <p class="section-label">Do Something</p>
+    <h2 class="section-title">Five Steps. No Excuses. No Money Required.</h2>
+  </div>
+  <div class="action-steps">
+    <div class="action-step fade-in">
+      <div class="step-tag">Step 01 · Weeks 1–2</div>
+      <h3>Educate Yourself First</h3>
+      <p>Before you advocate for anything, you have to know what you are talking about. Use the NCTR, CBC Beyond 94, and the TRC's 94 Calls to Action to build a foundation. If you are reading this page, you have already started.</p>
+      <span class="cost">Free · Takes: A few hours</span>
+    </div>
+    <div class="action-step fade-in">
+      <div class="step-tag">Step 02 · Weeks 2–4</div>
+      <h3>Share the Campaign</h3>
+      <p>Use #TeachTheTruth. Share this website. Post the statistics — 150,000 children. 165 years. 80% of provincial custody admissions. Make it impossible to scroll past. The goal is not guilt. The goal is awareness.</p>
+      <span class="cost">Free · Takes: 2 minutes</span>
+    </div>
+    <div class="action-step fade-in">
+      <div class="step-tag">Step 03 · Ongoing</div>
+      <h3>Sign and Share Petitions</h3>
+      <p>There are active petitions pushing the federal and provincial governments to make Indigenous curriculum mandatory. Signing takes 30 seconds. Sharing takes another 10. There is no easier step in this entire plan.</p>
+      <span class="cost">Free · Takes: 40 seconds</span>
+    </div>
+    <div class="action-step fade-in">
+      <div class="step-tag">Step 04 · Month 2</div>
+      <h3>Email Your School Board Trustee</h3>
+      <p>Write an email to your local school board trustee asking where your board stands on implementing Call to Action #62. It is free, it is direct, and it puts pressure exactly where it belongs. If enough students do this, it becomes impossible to ignore.</p>
+      <span class="cost">Free · Takes: 15 minutes</span>
+    </div>
+    <div class="action-step fade-in" style="grid-column: span 2;">
+      <div class="step-tag">Step 05 · Always</div>
+      <h3>Hold Them Accountable — Don't Let Them Make You Forget</h3>
+      <p>The government counts on people forgetting. Use the CBC Beyond 94 tracker to watch what provinces are doing — and what they are rolling back. Every time something happens, share it. The Indigenous voice was stripped away once. We are not going to let it be stripped away again by silence.</p>
+      <span class="cost">Free · Takes: Choosing to care</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="conclusion" id="conclusion">
+  <div class="fade-in">
+    <p class="slogan">"You can't fix a history you were never taught."</p>
+    <span class="hashtag">#TeachTheTruth</span>
+    <p>Call to Action #62 is not asking for anything radical. It is asking for the truth to be taught. The residential school system ran for over 160 years. It took 150,000 children. It destroyed languages, cultures, and families. And for decades after it ended, the Canadian school system acted like it never happened. That silence did not protect anyone. It just made sure the trauma kept getting passed down without anyone understanding where it came from. We have the information now. The survivors have spoken. The TRC has given us the roadmap. The only thing missing is the will to follow it.</p>
+    <div class="petition-box">
+      <h3>Add Your Name. Make It Count.</h3>
+      <input type="text" class="petition-input" id="petName" placeholder="Your name">
+      <input type="email" class="petition-input" id="petEmail" placeholder="Your email">
+      <button class="petition-btn" onclick="signPetition()">I Stand With Call to Action #62</button>
+      <p class="thank-you" id="thankYou">Thank you. Now share this with someone who needs to see it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">#TeachTheTruth · Call to Action #62</span>
+  <p>Sources: TRC 94 Calls to Action · Pidgeon, Daedalus (2024) · Wilfrid Laurier Bridges Journal (2017) · CBC Beyond 94 (2024)</p>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const faders = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  faders.forEach(f => observer.observe(f));
+
+  // Petition
+  function signPetition() {
+    const name = document.getElementById('petName').value.trim();
+    const email = document.getElementById('petEmail').value.trim();
+    if (!name || !email) { alert('Please fill in both fields.'); return; }
+    document.getElementById('thankYou').style.display = 'block';
+    document.getElementById('petName').value = '';
+    document.getElementById('petEmail').value = '';
+  }
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
